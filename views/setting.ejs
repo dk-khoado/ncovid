@@ -1,0 +1,108 @@
+<script src="/public/javascripts/setting.js"></script>
+
+<h2>Khu Vực</h2>
+<div class="row">
+    <div class="col-lg-4">
+        <div class="list-group">
+            <button class="btn" id="btnAddThanhPho" data-toggle="modal" data-target="#modalThanhPho">Thêm thành
+                phố</button>
+            <div class="list-group-item active">Thành Phố</div>
+            <div style="height: 250px; overflow-y: auto;" id="thanhPho">
+
+                <% listCity.forEach(element => { %>
+                <div class="list-group-item" style="cursor: pointer;" onclick="loadQuanHuyen('<%=element.id %>')">
+                    <%= element.name %></div>
+                <% }) %>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="list-group">
+            <button class="btn" disabled id="btnAddQuanHuyen"  data-toggle="modal" data-target="#modalQuanHuyen">Thêm quận huyện</button>
+            <div href="#" class="list-group-item active">Quận Huyện</div>
+            <div style="height: 250px; overflow-y: auto;" id="quanHuyen">
+                <a href="#" class="list-group-item">vui lòng chọn thành phố</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="list-group">
+            <button class="btn" disabled id="btnAddPhuongXa" data-toggle="modal" data-target="#modalPhuongXa">Thêm Phường Xã</button>
+            <div href="#" class="list-group-item active">Phường Xã</div>
+            <div style="height: 250px; overflow-y: auto;" id="phuongXa">
+                <a href="#" class="list-group-item">vui lòng chọn phường xã</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- end khu vực -->
+
+<!-- Modal  thành phố-->
+<div id="modalThanhPho" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Thêm thành phố</h4>
+            </div>
+            <div class="modal-body">
+                <input id="fieldAddThanhPho" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="themThanhPho()">Thêm</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--end  Modal  thành phố-->
+
+<!-- Modal  quận huyện-->
+<div id="modalQuanHuyen" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Thêm quận huyện</h4>
+            </div>
+            <div class="modal-body">
+                <input id="fieldAddQuanHuyen" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnModalAddQuanHuyen" class="btn btn-primary" >Thêm</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--end  Modal quận huyện-->
+
+
+<!-- Modal  phường xã-->
+<div id="modalPhuongXa" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Thêm quận huyện</h4>
+            </div>
+            <div class="modal-body">
+                <input id="fieldAddPhuongXa" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnModalAddPhuongXa" class="btn btn-primary" >Thêm</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--end  Modal  phường xã-->

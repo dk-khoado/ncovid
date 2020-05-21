@@ -1,0 +1,116 @@
+<h4 class="mb-2" align="center" style="color: blue; font-size: 30px; ">Khai báo y tế</h4>
+<h6 class="mb-2" id="error" align="center" style="color: red;"></h6>
+<form method="POST" action="/newProfile" onsubmit="return isSuccs">
+   <div class="form-row">
+      <div class="form-group col-sm-6">
+         <label for="myHoten">Họ tên (ghi chữ IN HOA)</label>
+
+         <input type="text" name="hoTen" class="form-control" id="myHoten" placeholder="Họ tên" required>
+      </div>
+      <div class="form-group col-sm-6">
+         <label for="mySoCMND">Số CMND</label>
+         <input type="number" name="CMND" onfocusout="kiemTraCMND()" required class="form-control" id="mySoCMND" placeholder="Số CMND">
+      </div>
+   </div>
+   <div class="form-row">
+      <div class="form-group col-sm-4">
+         <label for="myState">Năm sinh</label>
+         <input type="myState" name="namSinh" required class="form-control" id="namSinh" placeholder="Năm Sinh">
+      </div>
+      <div class="form-group col-sm-4">
+         <label for="myState">Giới tính</label>
+         <select id="myState" required name="gioiTinh" class="form-control">
+            <option selected value="">Chọn</option>
+            <option value="name">Nam</option>
+            <option value="nu">Nữ</option>
+            <option value="khac">Khác</option>
+         </select>
+      </div>
+      <div class="form-group col-sm-4">
+         <label for="myState">Quốc tịch</label>
+         <input type="myState" name="quocTich" required class="form-control" id="quocTich" placeholder="Quốc Tịch">
+      </div>
+   </div>
+   <div class="form-group col-sm-12">
+      <label for="inputAddress">Số nhà, phố, tổ dân phố/thôn/đội</label>
+      <input type="text" required name="diaChi" class="form-control" id="myAddress" placeholder="">
+   </div>
+   <div class="form-row">
+      <div class="form-group col-sm-4">
+         <label for="valueThanhPho">Tỉnh thành</label>
+         <select id="valueThanhPho" required name="tinhThanh" onchange="loadQuanHuyen()" class="form-control">
+            <option selected value="">Chọn</option>
+            <% listCity.forEach(element => { %>
+            <option value="<%= element.id %>"><%= element.name %> </option>
+            <% }) %>
+         </select>
+      </div>
+      <div class="form-group col-sm-4">
+         <label for="valueQuanHuyen">Quận / Huyện</label>
+         <select id="valueQuanHuyen" required name="quanHuyen" onchange="loadPhuongXa()" class="form-control">
+            <option selected value="">Chọn</option>
+         </select>
+      </div>
+      <div class="form-group col-sm-4">
+         <label for="valuePhuongXa">Phường / Xã</label>
+         <select id="valuePhuongXa" required name="phuongXa" class="form-control">
+            <option selected value="">Chọn</option>
+         </select>
+      </div>
+   </div>
+   <div class="form-group col-sm-12">
+      <label for="lo_trinh_di_chuyen">Trong 14 ngày qua anh chị đã đi những đâu ?</label>
+      <textarea id="lo_trinh_di_chuyen" name="lo_trinh_di_chuyen" class="form-control" rows="3"></textarea>
+   </div>
+   <label>Trong 14 ngày qua Anh/Chị có thấy xuất hiện dấu hiệu nào sau đây không ?</label>
+   <table class="table table-bordered">
+         <thead>
+               <tr>
+                     <th style="width: 40%">Triệu chứng</th>
+                     <th style="width: 5%">Có</th>
+                     <th style="width: 5%">Không</th>
+            <th style="width: 40%">Triệu chứng</th>
+                     <th style="width: 5%">Có </th>
+                     <th style="width: 5%">Không</th>
+                  
+         </tr>
+            </thead>
+         <tbody>
+               <tr>
+                     <td>Sốt</td>
+                     <td><label for="opt-0"><input type="radio" value="có" required name="sot" id="opt-0"></label></td>
+                     <td><label for="opt-1"><input type="radio" value="không" required name="sot" id="opt-1"></label></td>
+            <td>Đau họng</td>
+            <td><label for="opt-0"><input type="radio" name="dau_hong"value="có" required id="opt-0"></label></td>
+            <td><label for="opt-1"><input type="radio" name="dau_hong" value="không" required id="opt-1"></label></td>
+                  
+         </tr>
+               <tr>
+                     <td>Ho</td>
+                     <td><label for="opt-0"><input type="radio" value="có" required name="ho" id="opt-0"></label></td>
+                     <td><label for="opt-1"><input type="radio" required value="không" name="ho" id="opt-1"></label></td>
+            <td>Nôn/ buồn nôn</td>
+            <td><label for="opt-0"><input type="radio" name="buon_non" required value="có" id="opt-0"></label></td>
+            <td><label for="opt-1"><input type="radio" name="buon_non" required value="không" id="opt-1"></label></td>
+                  
+         </tr>
+               <tr>
+                     <td>Khó thở</td>
+            <td><label for="opt-0"><input type="radio" name="kho_tho" value="có" required id="opt-0"></label></td>
+                     <td><label for="opt-1"><input type="radio" required value="không"  name="kho_tho" id="opt-1"></label></td>
+            <td>Tiêu chảy</td>
+            <td><label for="opt-0"><input type="radio" name="tieu_chay" value="có" required id="opt-0"></label></td>
+            <td><label for="opt-1"><input type="radio" name="tieu_chay" value="không" required id="opt-1"></label></td>
+                  
+         </tr>
+            </tbody>
+   </table>
+
+
+   <div align="center">
+      <button type="submit" class="btn btn-primary">Gửi</button>
+   </div>
+</form>
+
+
+<script src="/public/javascripts/index.js"></script>
