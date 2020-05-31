@@ -34,6 +34,6 @@ function handleDisconnect(conn) {
   });
 }
 
-handleDisconnect(connection);
+handleDisconnect(con);
 
 module.exports = con;
