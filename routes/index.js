@@ -30,6 +30,30 @@ router.get('/user', function (req, res, next) {
   res.render('users', { title: 'Quản lý cách ly tại nhà', activeTab: "user" });
 });
 
+router.get('/user/edit/:id', function (req, res, next) {
+  var users = new userModel();
+  
+  users.getCachLyByID(req.params.id, (err, data) => {
+    if (err) {
+      res.send(404);
+    } else {
+      res.render('cachLy/edit', { title: 'Quản lý cách ly tại nhà', activeTab: "user", data: data });
+    }
+  })
+});
+
+router.post('/user/edit/:id', function (req, res, next) {
+  var users = new userModel();
+  
+  users.capNhatThongTin(req.params.id, req.body,(err, data) => {
+    if (err) {
+      res.send("lỗi hệ thống vui long báo cáo quản trị viên !");
+    } else {
+      res.redirect(req.url);
+    }
+  })
+});
+
 
 router.post('/newProfile', function (req, res, next) {
   res.locals.title = "";
@@ -46,11 +70,11 @@ router.get('/kiemTraCMND/:cmnd', function (req, res, next) {
   userProfile.kiemTraCMND(req.params.cmnd, (err, result) => {
 
     if (result) {
-      res.status(200).send({result: 1})
+      res.status(200).send({ result: 1 })
       return;
     }
 
-    res.status(200).send({result: 0})
+    res.status(200).send({ result: 0 })
   })
 
 });

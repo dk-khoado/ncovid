@@ -31,6 +31,16 @@ router.post('/cachly', (req, res)=>{
   })
 })
 
+router.get('/xoaCachLy', (req, res)=>{
+  users.getAll((err, data)=>{
+    if (err) {
+      res.send();
+    } else {
+      res.send(data);
+    }
+  })
+})
+
 router.get('/khaibao', (req, res)=>{
   users.getAll((err, data)=>{
     if (err) {
@@ -40,4 +50,17 @@ router.get('/khaibao', (req, res)=>{
     }
   })
 })
+
+router.get('/khaibao/edit/:id', (req, res)=>{
+  users.getAll((err, data)=>{
+    if (err) {
+      res.send();
+    } else {
+      res.send(data);
+    }
+  })
+})
+
+
+
 module.exports = router;

@@ -9,7 +9,7 @@ $(document).ready(function () {
                 { data: 'so_ngay' },
                 {
                     "render": function (data, type, row, meta) {
-                        return '<a class="btn btn-default"><em class="fa fa-pencil"></em></a> <a class="btn btn-danger"><em class="fa fa-trash"></em></a>';
+                        return `<a class="btn btn-default"><em class="fa fa-pencil"></em></a>`;
                     }
                 }
             ]
@@ -27,7 +27,7 @@ $(document).ready(function () {
                 { data: 'dia_chi' },
                 {
                     "render": function (data, type, row, meta) {
-                        return '<a class="btn btn-default"><em class="fa fa-pencil"></em></a> <a class="btn btn-danger"><em class="fa fa-trash"></em></a>';
+                        return `<a class="btn btn-default" href="/user/edit/${row.id}"><em class="fa fa-pencil"></em></a> <a class="btn btn-danger"><em class="fa fa-trash"></em></a>`;
                     }
                 }
             ]

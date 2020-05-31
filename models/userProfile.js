@@ -1,8 +1,9 @@
-const db = require('./index');
+var db = require('./index');
 
 class userModel {
 
-    constructor() {
+    constructor() {  
+        db = require('./index');
     }
 
     themMoi(body) {
@@ -41,6 +42,9 @@ class userModel {
 
     kiemTraCMND(CMND, callback) {
         db.connect((err) => {
+            if (err) {
+                console.error('Error:- ' + err.stack);
+            }
             var sql = "SELECT CMND FROM users WHERE CMND = ?"
             db.query(sql, [CMND], (error, result) => {
                 if (error) {
@@ -58,6 +62,9 @@ class userModel {
 
     getAll(callback) {
         db.connect((err) => {
+            if (err) {
+                console.error('Error:- ' + err.stack);
+            }
             var sql = "SELECT users.*, sku.lo_trinh_di_chuyen, sku.buon_non, sku.dau_hong, sku.ho, sku.kho_tho, sku.sot, sku.tieu_chay FROM users LEFT JOIN suc_khoe_user sku ON users.id = sku.user_id"
             db.query(sql, (error, result) => {
                 if (error) {
@@ -86,31 +93,105 @@ class userModel {
 
     themNguoiCachLy(id, soNgayCachLy, callback) {
         db.connect((err) => {
-            var today = new Date();          
+            var today = new Date();
             var sql = "CALL themCachLy(?,?,?,?, @username);"
             db.query(sql, [id, soNgayCachLy, today, randomPassword(6)], (error, result) => {
                 if (error) {
                     console.log(error);
                     callback(error);
-                } else {                    
+                } else {
                     callback(null, result);
                 }
             })
         })
     }
 
-    dangNhap(username, password, callback = (error, result)=>{}){
-        db.connect((err) => {                 
+    dangNhap(username, password, callback = (error, result) => { }) {
+        db.connect((err) => {
             var sql = "CALL dangNhap(?,?);"
             db.query(sql, [username, password], (error, result) => {
                 if (error) {
                     console.log(error);
                     callback(error);
-                } else {         
+                } else {
                     console.log(result[0][0]);
                     callback(null, result[0][0]);
                 }
             })
+        })
+    }
+
+    changePassFirst(username, password, oldPassword, callback = (error, result) => { }) {
+        db.connect((err) => {
+            var sql = "CALL doiMatKhauLanDau(?,?, ?);"
+            db.query(sql, [username, password, oldPassword], (error, result) => {
+                if (error) {
+                    console.log(error);
+                    callback(error);
+                } else {
+                    console.log(result[0][0]);
+                    callback(null, result[0][0]);
+                }
+            })
+        })
+    }
+
+    checkIn(longitude, latitude, status, userID, callback = (error, result) => { }) {
+        db.connect((err) => {
+            var sql = "CALL checkIn(? ,? ,? ,?);"
+            db.query(sql, [longitude, latitude, userID, status], (error, result) => {
+                if (error) {
+                    console.log(error);
+                    callback(error);
+                } else {
+                    console.log(result);
+                    callback(null, result);
+                }
+            })
+        })
+    }
+
+    getCachLyByID(id, callback = (error, result)=>{}){
+        db.connect((err) => {
+            var sql = "CALL getByID(?)"
+            db.query(sql, [id], (error, result) => {
+                if (error) {
+                    console.log(error);
+                    callback(error);
+                } else {
+                    
+                    callback(null, result[0][0]);
+                }
+            })
+        })
+    }
+
+    capNhatThongTin(id,body, callback = (error, result)=>{}){
+        db.connect((err) => {
+            var sql = "CALL capNhatThongTin(?, ? ,? ,? ,? ,? ,?, ?)"
+            db.query(sql, [id, body.hoTen, body.CMND, body.namSinh, body.gioiTinh, body.quocTich, body.diaChi, body.lo_trinh_di_chuyen], (error, result) => {
+                if (error) {
+                    console.log(error);
+                    callback(error);
+                } else {
+                    
+                    callback(null, result[0][0]);
+                }
+            })
+        })
+    }
+
+    getHistoryCheckIn(id,callback = (error, result)=>{}){
+        db.connect((err) => {  
+            var sql = "SELECT * FROM `history_checkin` WHERE user_id = ?"
+            db.query(sql,id , (error, result) => {
+                if (error) {
+                    console.log(error);
+                    callback(error);
+                } else {                    
+                    callback(null, result);
+                }
+            })            
         })
     }
 }

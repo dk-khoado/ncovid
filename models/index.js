@@ -1,10 +1,10 @@
 var mysql = require('mysql');
 
 const con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "ncovid"
+  host: "den1.mysql2.gear.host",
+  user: "ncovid",
+  password: "khoa_123",
+  database: "ncovid",
 });
 
 // con.connect(function(err) {
@@ -16,6 +16,8 @@ const con = mysql.createConnection({
 //     console.log("test OK");
 //   });
 // });
-
+con.on('error', (err)=>{
+  console.log(err.message);
+})
 
 module.exports = con;

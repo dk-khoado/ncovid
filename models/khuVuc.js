@@ -1,8 +1,9 @@
-const db = require('./index');
+var db = require('./index');
 
 class khuVuc {
 
     constructor() {
+        db = require('./index');
     }
 
     themThanhPho(name, callback) {
