@@ -16,14 +16,24 @@ var mysql = require('mysql');
 //     console.log("test OK");
 //   });
 // });
-con.on('error', (err)=>{
-  console.log(err.message);
-  con = mysql.createConnection({
-    host: "den1.mysql2.gear.host",
-    user: "ncovid",
-    password: "khoa_123",
-    database: "ncovid",
+function handleDisconnect(conn) {
+  con.on('error', function(err) {
+    if (!err.fatal) {
+      return;
+    }
+
+    if (err.code !== 'PROTOCOL_CONNECTION_LOST') {
+      throw err;
+    }
+
+    console.log('Re-connecting lost connection: ' + err.stack);
+
+    connection = mysql.createConnection(con.config);
+    handleDisconnect(connection);
+    connection.connect();
   });
-})
+}
+
+handleDisconnect(connection);
 
 module.exports = con;
