@@ -69,4 +69,6 @@ router.post('/historycheckin', (req, res) => {
         res.status(200).send({ success: true, data: result });
     });
  });
+
+ 
 module.exports = router;

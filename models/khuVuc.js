@@ -1,5 +1,4 @@
-var db = require('./index');
-
+var db;
 class khuVuc {
 
     constructor() {
@@ -18,8 +17,6 @@ class khuVuc {
                         callback(null, result);
                 });
         });
-
-
     }
 
     themQuanHuyen(idThanhPho, name, callback) {
@@ -53,11 +50,11 @@ class khuVuc {
     }
 
     getThanhPho(callback) {
-        db.connect(function (err) {
+        db.connect(function (err) {           
             var sql = "SELECT * FROM thanh_pho";
             db.query(sql, (err, result, fields) => {
-                if (err)
-                    console.log(err);
+                if (err)                    
+                    callback(err, []);
                 else {
                     callback(null, result);
                 }
@@ -94,6 +91,9 @@ class khuVuc {
         });
     }
 
+    clode() {
+        db.end();
+    }
 }
 
 module.exports = khuVuc;

@@ -1,6 +1,6 @@
 var mysql = require('mysql');
 
-const con = mysql.createConnection({
+ var con = mysql.createConnection({
   host: "den1.mysql2.gear.host",
   user: "ncovid",
   password: "khoa_123",
@@ -18,6 +18,12 @@ const con = mysql.createConnection({
 // });
 con.on('error', (err)=>{
   console.log(err.message);
+  con = mysql.createConnection({
+    host: "den1.mysql2.gear.host",
+    user: "ncovid",
+    password: "khoa_123",
+    database: "ncovid",
+  });
 })
 
 module.exports = con;

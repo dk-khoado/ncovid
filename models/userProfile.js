@@ -1,4 +1,4 @@
-var db = require('./index');
+var db;
 
 class userModel {
 
@@ -7,10 +7,7 @@ class userModel {
     }
 
     themMoi(body) {
-        db.connect(function (err) {
-            if (err) {
-                console.error('Error:- ' + err.stack);
-            }
+        db.connect(function (err) {          
             db.beginTransaction();
             var sql = "INSERT INTO users (ho_ten, CMND, nam_sinh, gioi_tinh, quoc_tich,dia_chi, tinh_thanh, quan_huyen, phuong_xa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             var sqlSucKhoe = "INSERT INTO suc_khoe_user (user_id, lo_trinh_di_chuyen, sot, ho, kho_tho, dau_hong, buon_non, tieu_chay) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -41,10 +38,7 @@ class userModel {
     }
 
     kiemTraCMND(CMND, callback) {
-        db.connect((err) => {
-            if (err) {
-                console.error('Error:- ' + err.stack);
-            }
+        db.connect((err) => {          
             var sql = "SELECT CMND FROM users WHERE CMND = ?"
             db.query(sql, [CMND], (error, result) => {
                 if (error) {
@@ -61,10 +55,7 @@ class userModel {
     }
 
     getAll(callback) {
-        db.connect((err) => {
-            if (err) {
-                console.error('Error:- ' + err.stack);
-            }
+        db.connect((err) => {         
             var sql = "SELECT users.*, sku.lo_trinh_di_chuyen, sku.buon_non, sku.dau_hong, sku.ho, sku.kho_tho, sku.sot, sku.tieu_chay FROM users LEFT JOIN suc_khoe_user sku ON users.id = sku.user_id"
             db.query(sql, (error, result) => {
                 if (error) {

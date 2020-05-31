@@ -103,7 +103,7 @@ router.get('/thanhPho', function (req, res, next) {
 
     } else {
       res.send(data);
-    }
+    }    
   })
 });
 
@@ -156,6 +156,4 @@ router.post('/phuongXa', function (req, res, next) {
     }
   })
 });
-
-
 module.exports = router;

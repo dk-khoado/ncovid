@@ -3,7 +3,6 @@ var router = express.Router();
 
 const usesModel = require('../models/userProfile');
 
-const users = new usesModel();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -12,6 +11,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/cachly', (req, res)=>{
+  const users = new usesModel();
     users.getAllCachLy((err, data)=>{
       if (err) {
         res.send([]);
@@ -22,6 +22,7 @@ router.get('/cachly', (req, res)=>{
 })
 
 router.post('/cachly', (req, res)=>{
+  const users = new usesModel();
   users.themNguoiCachLy(req.body.id, req.body.soNgay,(err, data)=>{
     if (err) {
       res.send({status: false});
@@ -32,6 +33,7 @@ router.post('/cachly', (req, res)=>{
 })
 
 router.get('/xoaCachLy', (req, res)=>{
+  const users = new usesModel();
   users.getAll((err, data)=>{
     if (err) {
       res.send();
@@ -42,6 +44,7 @@ router.get('/xoaCachLy', (req, res)=>{
 })
 
 router.get('/khaibao', (req, res)=>{
+  const users = new usesModel();
   users.getAll((err, data)=>{
     if (err) {
       res.send();
@@ -52,6 +55,7 @@ router.get('/khaibao', (req, res)=>{
 })
 
 router.get('/khaibao/edit/:id', (req, res)=>{
+  const users = new usesModel();
   users.getAll((err, data)=>{
     if (err) {
       res.send();
