@@ -44,7 +44,7 @@ router.post('/changePasswordFirst', (req, res) => {
 })
 
 router.post('/checkin', (req, res) => {
-    user.checkIn(req.body.latitude, req.body.longitude, req.body.status, req.body.userID, (error, result) => {
+    user.checkIn(req.body.longitude, req.body.latitude, req.body.status, req.body.userID, (error, result) => {
         if (error) {
             console.log(error);
             res.status(200).send({ success: false });
