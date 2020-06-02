@@ -1,6 +1,7 @@
 var mysql = require('mysql');
 
- var con = mysql.createConnection({
+var con = mysql.createPool({
+  connectionLimit: 20,
   host: "den1.mysql2.gear.host",
   user: "ncovid",
   password: "khoa_123",
@@ -17,7 +18,7 @@ var mysql = require('mysql');
 //   });
 // });
 function handleDisconnect(conn) {
-  con.on('error', function(err) {
+  con.on('error', function (err) {
     if (!err.fatal) {
       return;
     }
@@ -25,12 +26,6 @@ function handleDisconnect(conn) {
     if (err.code !== 'PROTOCOL_CONNECTION_LOST') {
       throw err;
     }
-
-    console.log('Re-connecting lost connection: ' + err.stack);
-
-    connection = mysql.createConnection(con.config);
-    handleDisconnect(connection);
-    connection.connect();
   });
 }
 
