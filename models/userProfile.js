@@ -184,7 +184,7 @@ class userModel {
 
     getHistoryCheckIn(id,callback = (error, result)=>{}){
         db.getConnection((err, connection) => {  
-            var sql = "SELECT * FROM `history_checkin` WHERE user_id = ?"
+            var sql = "CALL getHistoryCheckIn(?)"
             connection.query(sql,id , (error, result) => {
                 if (error) {
                     console.log(error);
