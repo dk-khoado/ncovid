@@ -136,8 +136,8 @@ class userModel {
     checkIn(longitude, latitude, status, userID, callback = (error, result) => { }) {
         db.getConnection((err, connection) => {
             console.log("long:"+ longitude + ":"+ latitude);
-            var sql = "CALL checkIn(? ,? ,? ,?);"
-            connection.query(sql, [longitude, latitude, userID, status], (error, result) => {
+            var sql = "CALL checkIn(? ,? ,? ,?,?);"
+            connection.query(sql, [longitude, latitude, userID, status, new Date()], (error, result) => {
                 if (error) {
                     console.log(error);
                     callback(error);
