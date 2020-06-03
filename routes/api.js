@@ -14,7 +14,7 @@ router.post('/login', (req, res) => {
         }
 
         if (result.success == 1) {
-            res.status(200).send({success: true, token:result.token});
+            res.status(200).send({success: true, token:result.token, id: result.userid});
             return;
         }
 
