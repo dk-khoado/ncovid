@@ -63,10 +63,10 @@ router.post('/historycheckin', (req, res) => {
     user.getHistoryCheckIn(req.body.checkSum, (error, result) => {
         if (error) {
             console.log(error);
-            res.status(200).send({ success: false,data:[] });
+            res.status(200).send([]);
             return;
         }
-        res.status(200).send({ success: true, data: result[0] });
+        res.status(200).send(result[0]);
     });
  });
 
