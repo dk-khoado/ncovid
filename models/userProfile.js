@@ -14,7 +14,7 @@ class userModel {
                 [body.hoTen, body.CMND, body.namSinh, body.gioiTinh, body.quocTich, body.diaChi, body.tinhThanh, body.quanHuyen, body.phuongXa],
                 function (err, result) {
                     if (err) {
-                        db.rollback();
+                        connection.rollback();
                         return;
                     }
                     console.log(result);
@@ -25,7 +25,7 @@ class userModel {
                                 connection.rollback();
                                 connection.release();
                             }
-                            db.commit((error) => {
+                            connection.commit((error) => {
                                 if (error) {
                                     connection.rollback();                                   
                                 }
