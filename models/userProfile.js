@@ -196,6 +196,21 @@ class userModel {
             })            
         })
     }
+
+    checking(id,callback = (error, result)=>{}){
+        db.getConnection((err, connection) => {  
+            var sql = "CALL checking(?)"
+            connection.query(sql,id , (error, result) => {
+                if (error) {
+                    console.log(error);
+                    callback(error);
+                } else {                    
+                    callback(null, result);
+                }
+                connection.release();
+            })            
+        })
+    }
 }
 
 function randomPassword(number) {

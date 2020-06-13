@@ -4,18 +4,21 @@
    <div class="form-row">
       <div class="form-group col-sm-6">
          <label for="myHoten">Họ tên (ghi chữ IN HOA)</label>
-            
-         <input type="text" name="hoTen" class="form-control" id="myHoten" placeholder="Họ tên" required value="<%= data.ho_ten %>">
+
+         <input type="text" name="hoTen" class="form-control" id="myHoten" placeholder="Họ tên" required
+            value="<%= data.ho_ten %>">
       </div>
       <div class="form-group col-sm-6">
          <label for="mySoCMND">Số CMND</label>
-         <input type="number" value="<%= data.CMND %>" name="CMND" onfocusout="kiemTraCMND(<%= data.CMND  %>)" required class="form-control" id="mySoCMND" placeholder="Số CMND">
+         <input type="number" value="<%= data.CMND %>" name="CMND" onfocusout="kiemTraCMND(<%= data.CMND  %>)" required
+            class="form-control" id="mySoCMND" placeholder="Số CMND">
       </div>
    </div>
    <div class="form-row">
       <div class="form-group col-sm-4">
          <label for="myState">Năm sinh</label>
-         <input type="myState" value="<%= data.nam_sinh %>" name="namSinh" required class="form-control" id="namSinh" placeholder="Năm Sinh">
+         <input type="myState" value="<%= data.nam_sinh %>" name="namSinh" required class="form-control" id="namSinh"
+            placeholder="Năm Sinh">
       </div>
       <div class="form-group col-sm-4">
          <label for="myState">Giới tính</label>
@@ -28,35 +31,42 @@
       </div>
       <div class="form-group col-sm-4">
          <label for="myState">Quốc tịch</label>
-         <input type="myState" name="quocTich" value="<%= data.quoc_tich %>" required class="form-control" id="quocTich" placeholder="Quốc Tịch">
+         <input type="myState" name="quocTich" value="<%= data.quoc_tich %>" required class="form-control" id="quocTich"
+            placeholder="Quốc Tịch">
       </div>
    </div>
    <div class="form-group col-sm-12">
       <label for="inputAddress">Số nhà, phố, tổ dân phố/thôn/đội</label>
-      <input type="text" value="<%= data.dia_chi %>" required name="diaChi" class="form-control" id="myAddress" placeholder="">
+      <input type="text" value="<%= data.dia_chi %>" required name="diaChi" class="form-control" id="myAddress"
+         placeholder="">
    </div>
    <div class="form-row">
       <div class="form-group col-sm-4">
          <label for="valueThanhPho">Tỉnh thành</label>
-         <input id="valueThanhPho" disabled value="<%= data.tinh_thanh %> " name="tinhThanh"  class="form-control"/>        
+         <input id="valueThanhPho" disabled value="<%= data.tinh_thanh %> " name="tinhThanh" class="form-control" />
       </div>
       <div class="form-group col-sm-4">
          <label for="valueQuanHuyen">Quận / Huyện</label>
-         <input id="valueQuanHuyen"disabled required value="<%= data.quan_huyen %> " name="quanHuyen" onchange="loadPhuongXa()" class="form-control"/>            
+         <input id="valueQuanHuyen" disabled required value="<%= data.quan_huyen %> " name="quanHuyen"
+            onchange="loadPhuongXa()" class="form-control" />
       </div>
       <div class="form-group col-sm-4">
          <label for="valuePhuongXa">Phường / Xã</label>
-         <input id="valuePhuongXa"disabled required name="phuongXa" value="<%= data.phuong_xa %> " class="form-control"/>           
+         <input id="valuePhuongXa" disabled required name="phuongXa" value="<%= data.phuong_xa %> "
+            class="form-control" />
       </div>
    </div>
    <div class="form-group col-sm-12">
       <label for="lo_trinh_di_chuyen">Trong 14 ngày qua anh chị đã đi những đâu ?</label>
-      <textarea id="lo_trinh_di_chuyen"  name="lo_trinh_di_chuyen" class="form-control" rows="3"><%= data.lo_trinh_di_chuyen %></textarea>
-   </div>   
+      <textarea id="lo_trinh_di_chuyen" name="lo_trinh_di_chuyen" class="form-control"
+         rows="3"><%= data.lo_trinh_di_chuyen %></textarea>
+   </div>  
+
    <div align="center">
       <button type="submit" class="btn btn-primary">Lưu</button>
       <a href="/user"><button type="button" class="btn btn-danger">Hủy</button></a>
    </div>
+
 </form>
 
 

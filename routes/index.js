@@ -32,7 +32,7 @@ router.get('/user', function (req, res, next) {
 
 router.get('/user/edit/:id', function (req, res, next) {
   var users = new userModel();
-  
+
   users.getCachLyByID(req.params.id, (err, data) => {
     if (err) {
       res.send(404);
@@ -44,8 +44,8 @@ router.get('/user/edit/:id', function (req, res, next) {
 
 router.post('/user/edit/:id', function (req, res, next) {
   var users = new userModel();
-  
-  users.capNhatThongTin(req.params.id, req.body,(err, data) => {
+
+  users.capNhatThongTin(req.params.id, req.body, (err, data) => {
     if (err) {
       res.send("lỗi hệ thống vui long báo cáo quản trị viên !");
     } else {
@@ -103,7 +103,7 @@ router.get('/thanhPho', function (req, res, next) {
 
     } else {
       res.send(data);
-    }    
+    }
   })
 });
 
@@ -156,4 +156,16 @@ router.post('/phuongXa', function (req, res, next) {
     }
   })
 });
+
+
+router.get('/cachly/checking/:id', (req, res) => {
+  const users = new userModel();
+  users.checking(req.params.id, (err, data) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.render('checking', { data: data, title: 'Quản lý cách ly tại nhà', activeTab: "user", iduser: req.params.id });
+    }
+  })
+})
 module.exports = router;

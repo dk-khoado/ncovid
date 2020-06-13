@@ -14,7 +14,7 @@ router.post('/login', (req, res) => {
         }
 
         if (result.success == 1) {
-            res.status(200).send({success: true, token:result.token, id: result.userid});
+            res.status(200).send({ success: true, token: result.token, id: result.userid });
             return;
         }
 
@@ -68,7 +68,18 @@ router.post('/historycheckin', (req, res) => {
         }
         res.status(200).send(result[0]);
     });
- });
+});
 
- 
+router.get('/users/:id', function (req, res, next) {
+    var users = new userModel();
+
+    users.getCachLyByID(req.params.id, (err, data) => {
+        if (err) {
+            res.send(404);
+        } else {
+            res.send(data);
+        }
+    })
+});
+
 module.exports = router;

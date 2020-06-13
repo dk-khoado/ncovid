@@ -35,7 +35,7 @@ $(document).ready(function () {
                 },
                 {
                     "render": function (data, type, row, meta) {
-                        return `<a class="btn btn-default"><em class="fa fa-pencil"></em></a>`;
+                        return `<a href="/cachly/checking/${row.id}" class="btn btn-default"><em class="fa fa-eye"></em></a>`;
                     }
                 }
             ]

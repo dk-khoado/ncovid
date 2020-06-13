@@ -1,0 +1,45 @@
+<script>
+    function formatDate(id, dateOrigin) {
+        var date = moment(dateOrigin).format('DD/MM/YYYY, HH:mm');
+        $("#" + id).text("Ngày báo cáo: " + date);
+    }
+</script>
+
+<div class="row">
+    <div class="col-sm-4">
+        <p id="hoten">Họ và tên: </p>
+        <p id="diaChi">Địa chỉ: </p>
+        <p id="thanhPho">Thành Phố: </p>
+        <p id="quanHuyen">Quận Huyện: </p>
+        <p id="phuongXa">Phường Xã: </p>
+    </div>
+    <div class="col-sm-8">
+        <% data[0].forEach(element => { %>
+        <div>
+            <h4 id="<%= element.id %>">Ngày báo cáo: </h4>
+            <p>Tình trạng: <%= element.status %> </p>
+            <p>vị trí:
+                <a target="_bank"
+                    href="https://www.google.com/maps/?q=<%= element.latitude%>,<%= element.longitude %>">Xem trên
+                    maps</a>
+            </p>
+        </div>
+        <script>
+            formatDate('<%= element.id %>', '<%= element.date_checkin %>')
+        </script>
+        <hr>
+        <% }) %>
+    </div>
+</div>
+<script>
+    $(document).ready(() => {
+        $.get("/api/users/<%- iduser %>", (data) => {
+            console.log(data);
+            $("#hoten").text("Họ và tên: " + data.ho_ten)
+            $("#diaChi").text("Địa chỉ: " + data.dia_chi)
+            $("#thanhPho").text("Thành phố: " + data.tinh_thanh)
+            $("#quanHuyen").text("Quận huyện: " + data.quan_huyen)
+            $("#phuongXa").text("Phường xã: " + data.phuong_xa)
+        });
+    })
+</script>
