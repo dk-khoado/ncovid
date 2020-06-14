@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var userModel = require('../models/userProfile');
 var khuVucModel = require('../models/khuVuc');
+
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
   var khuVuc = new khuVucModel();
