@@ -1,5 +1,11 @@
 var dataCachly = [];
 $(document).ready(function () {
+
+    loadCachLy();
+
+});
+
+function loadCachLy() {
     $.get('/users/cachly', (data, status) => {
         dataCachly = data;
         $('#usersCachLy').DataTable({
@@ -41,13 +47,7 @@ $(document).ready(function () {
             ]
         });
     });
-
-
-   loadCachLy();
-
-});
-
-function loadCachLy(){
+    
     $.get('/users/khaibao', (data, status) => {
         $('#users').DataTable({
             "destroy": true,
